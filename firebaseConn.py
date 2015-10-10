@@ -2,10 +2,19 @@ from firebase import firebase
 #firebase = firebase.FirebaseApplication('https://blinding-fire-1196.firebaseio.com', None)
 #result = firebase.get('/username', None)
 #print (result)
-
-def write_basic_profile_to_db(username, user_data):
-	firebase = firebase.FirebaseApplication('https://blinding-fire-1196.firebaseio.com', None)
-	# new_user = {"media": 113, "followed_by": 49, "website": "", "bio": "Individual Contributor", "follows": 479,"full_name": "Jessica Han", "profile_picture": "https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xta1/t51.2885-19/1739116_551021075030607_1017062428_a.jpg"}
-	result = firebase.put(url='/username', name=username,data=user_data)
+firebase_obj = firebase.FirebaseApplication('https://blinding-fire-1196.firebaseio.com', None)
+#write basic profile data of given username to database
+def write_basic_profile_to_db(username, user_data):	
+	result = firebase_obj.put(url='/profile_data', name=username,data=user_data)
 	#result=firebase.post('test/1',{'name':'jack','age':'100'})
 	#result = firebase.get('/username', None)
+#get all profile info base on given username
+def fetch_basic_profile_by_username(username):
+	return firebase_obj.get('/profile_data', username)
+#check if a user exists by username
+def does_user_exist(username):
+	profile = firebase_obj.get('/profile_data', username)
+	if(profile == None):
+		return "False"
+	else:
+		return "True"
