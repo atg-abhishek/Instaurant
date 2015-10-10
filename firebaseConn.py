@@ -17,14 +17,18 @@ def fetch_basic_profile_by_username(username):
 def does_user_exist(username):
 	profile = firebase_obj.get('/profile_data', username)
 	if(profile == None):
-		return "False"
+		return False
 	else:
-		return "True"
+		return True
 
 #write user auth to database
 def write_user_auth_to_db(username, token):
-	result = firebase_obj.put(url='/user_auth', name=username,data=token)
-	
+	if(not does_user_exist(username)):
+		result = firebase_obj.put(url='/user_auth', name=username,data=token)
+		return True
+	else:
+		return False
+
 #get token by given username
 def fetch_token_by_username(username):
 	return firebase_obj.get('/user_auth', username)
