@@ -1,4 +1,4 @@
-from flask import Flask 
+from flask import Flask, request
 import simplejson as json
 app = Flask(__name__)
 
@@ -13,6 +13,6 @@ def login():
 	login_details = {'username' : username, 'token' : token}
 	with open('./datafiles/'+username+'_login.json', 'w') as outfile:
 		json.dump(login_details, outfile)
-
+	return "The file has been saved"
 if __name__ == '__main__':
 	app.run(debug=True)
