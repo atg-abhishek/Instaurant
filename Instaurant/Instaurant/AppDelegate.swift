@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SSKeychain
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    
+    if SSKeychain.passwordForService(INSTAGRAM_SERVICE_NAME, account: INSTAGRAM_ACCOUNT) == nil {
+      // If user not connect with Instagram, present Login view to ask user login
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let loginViewController = storyboard.instantiateViewControllerWithIdentifier(LOGIN_VIEW_ID)
+      
+      self.window?.makeKeyAndVisible()
+      self.window?.rootViewController = loginViewController
+    }
+    
+    SSKeychain.setAccessibilityType(kSecAttrAccessibleWhenUnlocked)
+    
     return true
   }
 

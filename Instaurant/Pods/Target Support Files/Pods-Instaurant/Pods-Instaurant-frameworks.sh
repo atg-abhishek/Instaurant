@@ -84,18 +84,24 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Instaurant/Alamofire.framework"
   install_framework "Pods-Instaurant/Box.framework"
   install_framework "Pods-Instaurant/CMDQueryStringSerialization.framework"
   install_framework "Pods-Instaurant/ISO8601.framework"
   install_framework "Pods-Instaurant/ReactiveCocoa.framework"
   install_framework "Pods-Instaurant/Result.framework"
+  install_framework "Pods-Instaurant/SSKeychain.framework"
   install_framework "Pods-Instaurant/SimpleAuth.framework"
+  install_framework "Pods-Instaurant/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Instaurant/Alamofire.framework"
   install_framework "Pods-Instaurant/Box.framework"
   install_framework "Pods-Instaurant/CMDQueryStringSerialization.framework"
   install_framework "Pods-Instaurant/ISO8601.framework"
   install_framework "Pods-Instaurant/ReactiveCocoa.framework"
   install_framework "Pods-Instaurant/Result.framework"
+  install_framework "Pods-Instaurant/SSKeychain.framework"
   install_framework "Pods-Instaurant/SimpleAuth.framework"
+  install_framework "Pods-Instaurant/SwiftyJSON.framework"
 fi
